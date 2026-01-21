@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class PlayerShip : MonoBehaviour
 {
-    private Vector3 _position;
     [SerializeField]private float _moveSpeed = 3f;
     [SerializeField] private float _radius = 3f;
+    [SerializeField] private Transform _spawnPoint;
+    
+    private Vector3 _position;
     private float _angle;
+    private BulletPool _bulletPool;
 
-    private void Start()
+    public void Initialize(BulletPool pool)
     {
+        _bulletPool = pool;
         _angle = Random.Range(0, 360);
     }
 
@@ -20,5 +24,12 @@ public class PlayerShip : MonoBehaviour
 
         transform.position = _position;
         transform.up = _position;
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            var bullet = _bulletPool.Get();
+            bullet.transform.parent = _bulletPool.gameObject.transform;
+            bullet.Initialize(transform.up,_spawnPoint.position,_bulletPool);
+        }
     }
 }
