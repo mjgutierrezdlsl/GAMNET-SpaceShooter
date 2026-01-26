@@ -444,12 +444,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795545883}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bb48a922cd584044b018991a2232f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shipPrefab: {fileID: 1434131082117528587, guid: 61ed0cbf4c10fba478e5e83216496e61, type: 3}
+  isPersist: 0
   _bulletPool: {fileID: 5214497902013918436, guid: 612746fa66f5e7d49b99bdd53dccb945, type: 3}
   _playerSpawnParent: {fileID: 1962589747}
   _bulletPoolSpawnParent: {fileID: 2006841628}

@@ -1,22 +1,26 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : Singleton<PlayerManager>
 {
-    [SerializeField] private PlayerShip _shipPrefab;
     [SerializeField] private BulletPool _bulletPool;
-    [SerializeField] private Transform _playerSpawnParent,_bulletPoolSpawnParent;
+    [SerializeField] private Transform _bulletPoolSpawnParent;
+    [SerializeField] private Dictionary<ulong, PlayerShip> _playerShips = new();
 
-    private void Start()
+    public void AddPlayer(PlayerShip ship)
     {
-        SpawnPlayerShip(0);
-    }
+        print($"Ship {ship.OwnerClientId} added");
+        _playerShips.Add(ship.OwnerClientId, ship);
 
-    private void SpawnPlayerShip(int index)
-    {
-        var ship = Instantiate(_shipPrefab,_playerSpawnParent);
-        ship.gameObject.name = $"Player {index + 1} ship";
         var pool = Instantiate(_bulletPool, _bulletPoolSpawnParent);
-        pool.gameObject.name = $"Player {index + 1} bullets";
+        pool.Initialize(ship.OwnerClientId);
         ship.Initialize(pool);
     }
+
+    public void RemovePlayer(ulong clientId)
+    {
+        _playerShips.Remove(clientId);
+        print($"Ship {clientId} removed");
+    }
+
 }
