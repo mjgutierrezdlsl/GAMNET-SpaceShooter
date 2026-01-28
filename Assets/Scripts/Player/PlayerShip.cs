@@ -36,9 +36,9 @@ public class PlayerShip : NetworkBehaviour
 
     private void OnPlayerAttack(InputAction.CallbackContext context)
     {
-        var bullet = _bulletPool.Get();
-        bullet.transform.parent = _bulletPool.gameObject.transform;
-        bullet.Initialize(transform.up, _spawnPoint.position, _bulletPool);
+        // var bullet = _bulletPool.Get();
+        // bullet.transform.parent = _bulletPool.gameObject.transform;
+        // bullet.Initialize(transform.up, _spawnPoint.position, _bulletPool);
     }
 
 
