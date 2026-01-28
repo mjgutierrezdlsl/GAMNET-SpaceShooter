@@ -71,6 +71,39 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "AD Keys",
+                    "id": "d82c9e4c-657f-4a86-8571-a3a1b0b98f05",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "5f8ffacc-6f96-47eb-80c3-1b650ab65d37",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "5a59ccc4-c453-498f-9d24-ce4114cde255",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "929dca26-1e5e-491f-9f4d-b01ffb7af9cd",
                     "path": "<Keyboard>/z",
@@ -85,6 +118,17 @@
                     "name": "",
                     "id": "62bb2f8c-3790-4d66-977d-0d3450f93093",
                     "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "815c0479-c8a2-48a6-9658-55d40594dda9",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
