@@ -27,14 +27,10 @@ public class EnemyShip : NetworkBehaviour,IDamageable
     [SerializeField] private int _damageAmount = 1;
 
     private Rigidbody2D _rb;
-    private NetworkObject _no;
-
-    public NetworkObject NetworkObject => _no;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _no = GetComponent<NetworkObject>();
     }
 
     private void FixedUpdate()

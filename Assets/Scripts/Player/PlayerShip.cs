@@ -24,6 +24,13 @@ public class PlayerShip : NetworkBehaviour
         if (!IsOwner) { return; }
         _input.Player.Enable();
         _input.Player.Attack.started += OnPlayerAttack;
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        _bulletPool = PlayerManager.Instance.InitializeBulletsRpc(OwnerClientId);
+        _angle = Random.Range(0, 360);
     }
 
     public override void OnNetworkDespawn()
@@ -36,16 +43,8 @@ public class PlayerShip : NetworkBehaviour
 
     private void OnPlayerAttack(InputAction.CallbackContext context)
     {
-        // var bullet = _bulletPool.Get();
-        // bullet.transform.parent = _bulletPool.gameObject.transform;
-        // bullet.Initialize(transform.up, _spawnPoint.position, _bulletPool);
-    }
-
-
-    public void Initialize(BulletPool pool)
-    {
-        _bulletPool = pool;
-        _angle = Random.Range(0, 360);
+        var bullet = _bulletPool.Get();
+        bullet.Initialize(transform.up, _spawnPoint.position, _bulletPool);
     }
 
     private void Update()

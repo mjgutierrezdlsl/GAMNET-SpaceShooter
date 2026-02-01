@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet :NetworkBehaviour 
 {
     [SerializeField] private int damageAmount = 5;
     [SerializeField] private float moveSpeed = 5f;

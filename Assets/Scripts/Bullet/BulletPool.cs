@@ -4,19 +4,27 @@ using UnityEngine.Pool;
 public class BulletPool : MonoBehaviour
 {
     [SerializeField] private Bullet _prefab;
+    private ulong _clientId;
     private ObjectPool<Bullet> _pool;
 
-    private void Awake()
+    public void Initialize(ulong clientId)
     {
+        _clientId = clientId;        
         _pool = new ObjectPool<Bullet>(
             OnCreateItem,
             OnGetItem,
             OnReleaseItem,
             OnDestroyItem
-            );
+        );
     }
 
-    private Bullet OnCreateItem() => Instantiate(_prefab);
+    private Bullet OnCreateItem()
+    {
+        var bullet = Instantiate(_prefab);
+        bullet.NetworkObject.SpawnWithOwnership(_clientId);
+        return bullet;
+    }
+
     private void OnGetItem(Bullet bullet) => bullet.gameObject.SetActive(true);
     private void OnReleaseItem(Bullet bullet) => bullet.gameObject.SetActive(false);
     private void OnDestroyItem(Bullet bullet) => Destroy(bullet.gameObject);
