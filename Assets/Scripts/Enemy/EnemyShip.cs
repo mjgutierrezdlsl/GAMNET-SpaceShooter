@@ -1,7 +1,8 @@
+using Unity.Netcode;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class EnemyShip : MonoBehaviour,IDamageable
+[RequireComponent(typeof(Rigidbody2D),typeof(NetworkObject))]
+public class EnemyShip : NetworkBehaviour,IDamageable
 {
     [field:SerializeField] public int MaxHealth { get; private set; } = 1;
     
@@ -14,7 +15,10 @@ public class EnemyShip : MonoBehaviour,IDamageable
             _currentHealth = value;
             if (_currentHealth <= 0)
             {
-                Destroy(gameObject);
+                if (IsServer)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
@@ -23,10 +27,14 @@ public class EnemyShip : MonoBehaviour,IDamageable
     [SerializeField] private int _damageAmount = 1;
 
     private Rigidbody2D _rb;
+    private NetworkObject _no;
+
+    public NetworkObject NetworkObject => _no;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _no = GetComponent<NetworkObject>();
     }
 
     private void FixedUpdate()
