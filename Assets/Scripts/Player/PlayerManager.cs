@@ -6,7 +6,7 @@ public class PlayerManager :NetworkSingleton<PlayerManager>
 {
     [SerializeField] private BulletPool _bulletPool;
 
-    public BulletPool InitializeBulletsRpc(ulong clientId)
+    public BulletPool InitializeBullets(ulong clientId)
     {
         var pool = Instantiate(_bulletPool);
         pool.gameObject.name = $"Player {clientId + 1} bullets";

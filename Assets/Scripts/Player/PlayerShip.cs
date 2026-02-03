@@ -29,7 +29,7 @@ public class PlayerShip : NetworkBehaviour
 
     private void Initialize()
     {
-        _bulletPool = PlayerManager.Instance.InitializeBulletsRpc(OwnerClientId);
+        _bulletPool = PlayerManager.Instance.InitializeBullets(OwnerClientId);
         _angle = Random.Range(0, 360);
     }
 

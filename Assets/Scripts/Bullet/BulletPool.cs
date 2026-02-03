@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -11,14 +12,15 @@ public class BulletPool : MonoBehaviour
     {
         _clientId = clientId;        
         _pool = new ObjectPool<Bullet>(
-            OnCreateItem,
+            OnCreateItemRpc,
             OnGetItem,
             OnReleaseItem,
             OnDestroyItem
         );
     }
 
-    private Bullet OnCreateItem()
+    [Rpc(SendTo.Server)]
+    private Bullet OnCreateItemRpc()
     {
         var bullet = Instantiate(_prefab);
         bullet.NetworkObject.SpawnWithOwnership(_clientId);
